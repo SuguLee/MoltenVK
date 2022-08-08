@@ -99,7 +99,7 @@ void MVKViewportCommandEncoderState::encodeImpl(uint32_t stage) {
         [_cmdEncoder->_mtlRenderEncoder setViewports: mtlViewports count: vpCnt];
 #endif
 	} else {
-        [_cmdEncoder->_mtlRenderEncoder setViewport: mvkMTLViewportFromVkViewport(usingViewports[0])];
+        _cmdEncoder->setViewport(usingViewports[0]);
     }
 }
 

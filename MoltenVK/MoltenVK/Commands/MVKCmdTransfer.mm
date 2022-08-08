@@ -1301,7 +1301,7 @@ void MVKCmdClearAttachments<N>::encode(MVKCommandEncoder* cmdEncoder) {
     [mtlRendEnc setCullMode: MTLCullModeNone];
     [mtlRendEnc setTriangleFillMode: MTLTriangleFillModeFill];
     [mtlRendEnc setDepthBias: 0 slopeScale: 0 clamp: 0];
-    [mtlRendEnc setViewport: {0, 0, (double) fbExtent.width, (double) fbExtent.height, 0.0, 1.0}];
+    cmdEncoder->setViewport({0, 0, (float) fbExtent.width, (float) fbExtent.height, 0.0, 1.0});
     [mtlRendEnc setScissorRect: {0, 0, fbExtent.width, fbExtent.height}];
 
     cmdEncoder->setVertexBytes(mtlRendEnc, clearColors, sizeof(clearColors), 0);

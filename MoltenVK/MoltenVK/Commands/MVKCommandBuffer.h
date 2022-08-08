@@ -372,6 +372,17 @@ public:
     /** Returns the command encoding pool. */
     MVKCommandEncodingPool* getCommandEncodingPool();
 
+    inline void setViewport(const VkViewport& newViewport)
+    {
+        if(memcmp(&_currentViewport, &newViewport, sizeof(VkViewport)) == 0)
+        {
+            return;
+        }
+        
+        [_mtlRenderEncoder setViewport:mvkMTLViewportFromVkViewport(newViewport)];
+        _currentViewport = newViewport;
+    }
+
 #pragma mark Queries
 
     /** Begins an occlusion query. */
@@ -498,6 +509,7 @@ protected:
 	uint32_t _multiviewPassIndex;
     uint32_t _flushCount = 0;
 	bool _isRenderingEntireAttachment;
+    VkViewport _currentViewport;
 };
 
 
